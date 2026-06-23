@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debriefing de Tráfego · Workshop Renda Internacional</title>
+<style>
+  :root{
+    --bg:#232323; --card:#f2f0ec; --cardtxt:#2a2a2a; --txt:#f3f1ec; --muted:#a8a39a;
+    --bronze:#c2986a; --bronze2:#d9b48a; --green:#3a8a4f; --greenSRI:#2e4a37;
+    --red:#d4564f; --blue:#4b86c4; --line:#3a3a3a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#111;color:var(--txt);
+    -webkit-font-smoothing:antialiased;overflow:hidden}
+  .deck{height:100vh;width:100vw;position:relative}
+  .slide{position:absolute;inset:0;background:var(--bg);padding:48px 60px;display:none;flex-direction:column;overflow:hidden}
+  .slide.active{display:flex;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  h2.title{font-size:26px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+  h2.title .ac{color:var(--bronze)}
+  .subt{font-size:13.5px;color:var(--muted);margin-bottom:26px}
+  .grow{flex:1;display:flex;flex-direction:column;justify-content:center}
+
+  /* nav */
+  .nav{position:fixed;bottom:18px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:16px;z-index:50}
+  .nav button{background:#000a;border:1px solid var(--line);color:var(--txt);width:40px;height:40px;border-radius:50%;
+    font-size:17px;cursor:pointer;transition:.15s}
+  .nav button:hover{background:var(--bronze);border-color:var(--bronze);color:#1a1a1a}
+  .counter{font-size:12.5px;color:var(--muted);min-width:64px;text-align:center}
+  .dots{position:fixed;top:18px;right:24px;display:flex;gap:6px;z-index:50}
+  .dot{width:8px;height:8px;border-radius:50%;background:#444;cursor:pointer;transition:.15s}
+  .dot.on{background:var(--bronze);transform:scale(1.3)}
+  .badge{position:fixed;top:16px;left:24px;font-size:11px;color:var(--muted);letter-spacing:.5px;z-index:50}
+
+  /* cards / kpis */
+  .kgrid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+  .kpi{background:var(--card);color:var(--cardtxt);border-radius:14px;padding:18px 20px;box-shadow:0 4px 18px #0004}
+  .kpi .l{font-size:12px;color:#6a655c;text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;font-weight:600}
+  .kpi .v{font-size:30px;font-weight:800;line-height:1}
+  .kpi .n{font-size:12.5px;color:#7a756c;margin-top:7px}
+  .kpi .n.up{color:var(--green);font-weight:700} .kpi .n.dn{color:var(--red);font-weight:700}
+  .kpi.dark{background:var(--greenSRI);color:#eef3ee}
+  .kpi.dark .l{color:#9fc0a6} .kpi.dark .n{color:#bcd6c1}
+  .kpi.bronze{background:linear-gradient(135deg,#c2986a,#a9794c);color:#241b10}
+  .kpi.bronze .l{color:#3d2e1a} .kpi.bronze .n{color:#3d2e1a}
+
+  /* scoreboard rows */
+  .score{display:flex;flex-direction:column;gap:12px}
+  .srow{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;align-items:center;gap:14px;background:#2c2c2c;border:1px solid var(--line);
+    border-radius:12px;padding:14px 20px}
+  .srow .nm{font-weight:600;font-size:15px}
+  .srow .meta{color:var(--muted);font-size:14px}
+  .srow .real{font-size:20px;font-weight:800}
+  .srow .tag{justify-self:end;font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:20px}
+  .tag.ok{background:#1d3a26;color:#5fcf7e} .tag.warn{background:#3a3320;color:#e0b84a}
+  .srow.head{background:transparent;border:none;padding:4px 20px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+
+  /* timeline */
+  .tl{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-top:30px;position:relative;padding:0 10px}
+  .tl::before{content:'';position:absolute;top:46px;left:6%;right:6%;height:3px;background:linear-gradient(90deg,var(--bronze),var(--greenSRI))}
+  .tli{flex:1;text-align:center;position:relative;z-index:2}
+  .tli .dot2{width:18px;height:18px;border-radius:50%;background:var(--bronze);margin:38px auto 14px;border:4px solid var(--bg)}
+  .tli .dt{font-size:19px;font-weight:800;color:var(--bronze2)}
+  .tli .lb{font-size:13px;color:var(--txt);margin-top:4px}
+  .tli .sm{font-size:11.5px;color:var(--muted);margin-top:3px}
+
+  /* creative cards */
+  .creo{background:var(--card);color:var(--cardtxt);border-radius:13px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 16px #0004}
+  .creo .h{background:var(--greenSRI);color:#eef3ee;padding:10px 14px;font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
+  .creo .h .rk{background:var(--bronze);color:#241b10;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+  .creo .b{padding:13px 15px;display:flex;flex-direction:column;gap:6px}
+  .creo .b .row{display:flex;justify-content:space-between;font-size:13.5px}
+  .creo .b .row b{font-weight:800}
+  .creo .b .star{font-size:11.5px;color:var(--bronze);font-weight:700}
+  .creo a{font-size:12px;color:var(--blue);text-decoration:none;margin-top:2px}
+
+  /* funnel */
+  .fn{display:flex;flex-direction:column;gap:7px;max-width:560px}
+  .fns{display:flex;align-items:center;gap:14px}
+  .fnb{height:42px;border-radius:9px;display:flex;align-items:center;padding:0 16px;font-weight:700;color:#fff;
+    background:linear-gradient(90deg,var(--bronze),var(--greenSRI));white-space:nowrap;font-size:14px}
+  .fnm{color:var(--muted);font-size:13px} .fnm b{color:var(--txt)}
+
+  /* insight box */
+  .ins{background:linear-gradient(90deg,rgba(194,152,106,.16),transparent);border-left:4px solid var(--bronze);
+    border-radius:10px;padding:14px 20px;margin-top:18px;font-size:14.5px;line-height:1.55}
+  .ins b{color:var(--bronze2)}
+
+  /* recommendations */
+  .recs{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+  .rec{display:flex;gap:14px;background:#2c2c2c;border:1px solid var(--line);border-radius:11px;padding:13px 18px}
+  .rec .num{width:30px;height:30px;flex:0 0 auto;border-radius:8px;background:var(--bronze);color:#241b10;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:15px}
+  .rec .tx{font-size:14px;line-height:1.5} .rec .tx b{color:var(--bronze2)}
+
+  /* bars */
+  .barline{display:flex;align-items:center;gap:12px;margin:9px 0}
+  .barline .lbl{width:150px;font-size:13.5px;flex:0 0 auto}
+  .barline .track{flex:1;height:24px;background:#2c2c2c;border-radius:6px;overflow:hidden;position:relative}
+  .barline .fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:12.5px;font-weight:700;color:#fff;white-space:nowrap}
+  .barline .val{width:140px;text-align:right;font-size:13px;color:var(--muted)} .barline .val b{color:var(--txt)}
+
+  /* cover */
+  .cover{align-items:center;justify-content:center;text-align:center}
+  .cover .logo{font-size:13px;letter-spacing:4px;color:var(--bronze);margin-bottom:24px;text-transform:uppercase}
+  .cover h1{font-size:46px;font-weight:800;line-height:1.1;max-width:900px}
+  .cover h1 .ac{color:var(--bronze)}
+  .cover .sub{font-size:17px;color:var(--muted);margin-top:18px}
+  .cover .meta{margin-top:34px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
+  .hint{position:fixed;bottom:20px;right:24px;font-size:11px;color:#555;z-index:50}
+  .note{font-size:12px;color:var(--muted);margin-top:14px}
+  table.simple{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.simple th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:8px 12px;border-bottom:1px solid var(--line)}
+  table.simple td{padding:10px 12px;border-bottom:1px solid var(--line)}
+  table.simple td.r,table.simple th.r{text-align:right;font-variant-numeric:tabular-nums}
+  .pos{color:#5fcf7e;font-weight:700} .neg{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="badge">CARDÔ · DEBRIEFING DE TRÁFEGO</div>
+<div class="dots" id="dots"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 COVER -->
+  <section class="slide active cover">
+    <div class="logo">Segunda Renda Internacional</div>
+    <h1>Debriefing de <span class="ac">Tráfego</span><br>Workshop Renda Internacional</h1>
+    <div class="sub">Lançamento Maio–Junho 2026 · análise da operação de mídia paga</div>
+    <div class="meta">Captação 04/05 → Aula 31/05 → Carrinho 01/06–05/06 &nbsp;·&nbsp; Agência Cardô Marketing</div>
+  </section>
+
+  <!-- 2 TIMELINE -->
+  <section class="slide">
+    <h2 class="title">Linha do tempo do <span class="ac">lançamento</span></h2>
+    <div class="subt">Workshop gratuito · promessa: "Como fazer seus primeiros 100 dólares com projetos para empresas internacionais"</div>
+    <div class="grow">
+      <div class="tl">
+        <div class="tli"><div class="dt">04/05</div><div class="dot2"></div><div class="lb">Início da captação</div><div class="sm">CRM + grupo de WhatsApp</div></div>
+        <div class="tli"><div class="dt">31/05</div><div class="dot2"></div><div class="lb">Aula / Workshop gratuito</div><div class="sm">página de captura → aula</div></div>
+        <div class="tli"><div class="dt">01/06</div><div class="dot2"></div><div class="lb">Abertura do carrinho</div><div class="sm">R$497 · 50 primeiros: encontro de implementação</div></div>
+        <div class="tli"><div class="dt">02–04/06</div><div class="dot2"></div><div class="lb">2ª faixa de preço</div><div class="sm">R$597</div></div>
+        <div class="tli"><div class="dt">05/06</div><div class="dot2"></div><div class="lb">Fim das vendas</div><div class="sm">R$697 + boleto parcelado</div></div>
+      </div>
+      <div class="kgrid g3" style="margin-top:46px">
+        <div class="kpi"><div class="l">Janela de captação</div><div class="v">27 dias</div><div class="n">04/05 a 31/05</div></div>
+        <div class="kpi"><div class="l">Carrinho</div><div class="v">5 dias</div><div class="n">01/06 a 05/06 (preço escalonado)</div></div>
+        <div class="kpi bronze"><div class="l">Modelo</div><div class="v">Workshop ao vivo</div><div class="n">isca (ebook) + captação direta → aula → carrinho</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 SCOREBOARD -->
+  <section class="slide">
+    <h2 class="title">Placar do tráfego — <span class="ac">meta vs. realizado</span></h2>
+    <div class="subt">Todas as metas de captação batidas. Investimento de captação ficou praticamente igual ao planejado.</div>
+    <div class="grow">
+      <div class="score">
+        <div class="srow head"><div>Indicador</div><div>Meta</div><div>Realizado</div><div style="text-align:right">Resultado</div></div>
+        <div class="srow"><div class="nm">Leads totais (org + pago)</div><div class="meta">2.300</div><div class="real">3.364</div><div class="tag ok">+46% ✓</div></div>
+        <div class="srow"><div class="nm">Leads orgânicos</div><div class="meta">1.000</div><div class="real">2.014</div><div class="tag ok">+101% ✓</div></div>
+        <div class="srow"><div class="nm">Leads pagos (tráfego)</div><div class="meta">1.300</div><div class="real">1.350</div><div class="tag ok">+4% ✓</div></div>
+        <div class="srow"><div class="nm">↳ Ebook (isca)</div><div class="meta">550 · CPL ≤ R$1,50</div><div class="real">596 · CPL R$1,38</div><div class="tag ok">✓</div></div>
+        <div class="srow"><div class="nm">↳ Captação direta</div><div class="meta">750 · CPL R$2,00</div><div class="real">754 · CPL R$2,00</div><div class="tag ok">✓</div></div>
+        <div class="srow"><div class="nm">Investimento em captação</div><div class="meta">R$ 2.325,00</div><div class="real">R$ 2.328,58</div><div class="tag ok">no alvo ✓</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 CAPTAÇÃO leads -->
+  <section class="slide">
+    <h2 class="title">Captação — <span class="ac">leads e origem</span></h2>
+    <div class="subt">O orgânico dobrou a meta e puxou o volume; o pago entregou no alvo com CPL controlado.</div>
+    <div class="grow">
+      <div class="kgrid g4" style="margin-bottom:26px">
+        <div class="kpi dark"><div class="l">Total de leads</div><div class="v">3.364</div><div class="n">meta 2.300</div></div>
+        <div class="kpi"><div class="l">Leads pagos (Ads)</div><div class="v">1.350</div><div class="n">40% do total</div></div>
+        <div class="kpi"><div class="l">Leads orgânicos</div><div class="v">2.014</div><div class="n">60% do total</div></div>
+        <div class="kpi bronze"><div class="l">CPL geral (pago)</div><div class="v">R$ 1,72</div><div class="n">ebook R$1,38 · captação R$2,00</div></div>
+      </div>
+      <div class="barline"><div class="lbl">Orgânico</div><div class="track"><div class="fill" style="width:60%;background:var(--greenSRI)">2.014 leads</div></div><div class="val"><b>59,9%</b></div></div>
+      <div class="barline"><div class="lbl">Captação Ads</div><div class="track"><div class="fill" style="width:22.4%;background:var(--bronze)">754</div></div><div class="val"><b>22,4%</b> · R$1.508,82</div></div>
+      <div class="barline"><div class="lbl">Ebook Ads</div><div class="track"><div class="fill" style="width:17.7%;background:var(--blue)">596</div></div><div class="val"><b>17,7%</b> · R$819,76</div></div>
+    </div>
+  </section>
+
+  <!-- 5 melhores criativos captação -->
+  <section class="slide">
+    <h2 class="title">Melhores criativos de <span class="ac">captação</span></h2>
+    <div class="subt">Dados da plataforma (Meta). Um criativo de ebook carregou quase toda a captação.</div>
+    <div class="grow">
+      <div style="font-size:13px;color:var(--bronze2);font-weight:700;margin-bottom:10px">ISCA / EBOOK</div>
+      <div class="kgrid g3" style="margin-bottom:22px">
+        <div class="creo"><div class="h"><span>AD01 · "Segunda"</span><span class="rk">1</span></div><div class="b">
+          <div class="row"><span>Leads</span><b>539</b></div><div class="row"><span>CPL</span><b>R$ 0,99</b></div>
+          <div class="star">⭐ 72% de todos os leads do ebook</div><a href="https://www.instagram.com/p/DXzx0HRAFh6/" target="_blank">Visualizar criativo</a></div></div>
+        <div class="creo"><div class="h"><span>AD04 · "Pilates"</span><span class="rk">2</span></div><div class="b">
+          <div class="row"><span>Leads</span><b>87</b></div><div class="row"><span>CPL</span><b>R$ 1,45</b></div>
+          <div class="star">&nbsp;</div><a href="https://www.instagram.com/p/DYDvYnIAEbE/" target="_blank">Visualizar criativo</a></div></div>
+        <div class="creo"><div class="h"><span>AD05 · "Minha Mãe"</span><span class="rk">3</span></div><div class="b">
+          <div class="row"><span>Leads</span><b>79</b></div><div class="row"><span>CPL</span><b>R$ 1,30</b></div>
+          <div class="star">&nbsp;</div><a href="https://www.instagram.com/p/DYDvYoIAC-8/" target="_blank">Visualizar criativo</a></div></div>
+      </div>
+      <div style="font-size:13px;color:var(--bronze2);font-weight:700;margin-bottom:10px">CAPTAÇÃO DIRETA</div>
+      <div class="kgrid g3">
+        <div class="creo"><div class="h"><span>AD01 · "É o que eu faço" 🎬</span><span class="rk">1</span></div><div class="b">
+          <div class="row"><span>Leads</span><b>360</b></div><div class="row"><span>CPL</span><b>R$ 1,50</b></div>
+          <div class="star">vídeo lidera</div><a href="https://www.instagram.com/p/DX7OfhLAAxT/" target="_blank">Visualizar criativo</a></div></div>
+        <div class="creo"><div class="h"><span>AD04 · "Uma das piores" 🎬</span><span class="rk">2</span></div><div class="b">
+          <div class="row"><span>Leads</span><b>267</b></div><div class="row"><span>CPL</span><b>R$ 1,46</b></div>
+          <div class="star">melhor CPL do topo</div><a href="https://www.instagram.com/p/DX7OfxTgEd0/" target="_blank">Visualizar criativo</a></div></div>
+        <div class="creo"><div class="h"><span>AD11 · "Você quer viajar"</span><span class="rk">3</span></div><div class="b">
+          <div class="row"><span>Leads</span><b>135</b></div><div class="row"><span>CPL</span><b>R$ 1,77</b></div>
+          <div class="star">&nbsp;</div><a href="https://www.instagram.com/p/DYfhMKvAKOt/" target="_blank">Visualizar criativo</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 captação por público -->
+  <section class="slide">
+    <h2 class="title">Captação por <span class="ac">público</span></h2>
+    <div class="subt">Os públicos quentes (engajamento + remarketing) trouxeram a maior parte dos leads pagos de captação.</div>
+    <div class="grow">
+      <div class="barline"><div class="lbl">Env. 30 dias (quente)</div><div class="track"><div class="fill" style="width:100%;background:var(--greenSRI)">484 leads</div></div><div class="val">R$ 835,76</div></div>
+      <div class="barline"><div class="lbl">Remarketing (ADVGT)</div><div class="track"><div class="fill" style="width:69%;background:var(--bronze)">334</div></div><div class="val">R$ 509,35</div></div>
+      <div class="barline"><div class="lbl">Seguidores</div><div class="track"><div class="fill" style="width:11.6%;background:var(--blue)">56</div></div><div class="val">R$ 95,18</div></div>
+      <div class="barline"><div class="lbl">Env. 30 dias (frio)</div><div class="track"><div class="fill" style="width:6%;background:#6b6257">29</div></div><div class="val">R$ 39,99</div></div>
+      <div class="ins">💡 <b>Leitura:</b> a captação se sustentou em base já aquecida. Isso é eficiente, mas mostra dependência da audiência existente — quanto mais a base é alimentada (orgânico + ebook), maior fica o público de remarketing que vende lá na frente.</div>
+    </div>
+  </section>
+
+  <!-- 7 vendas KPIs + funil -->
+  <section class="slide">
+    <h2 class="title">Vendas <span class="ac">pelo tráfego</span></h2>
+    <div class="subt">Campanha de vendas (01–05/06). Números diretamente atribuídos à mídia paga.</div>
+    <div class="grow">
+      <div class="kgrid g4" style="margin-bottom:26px">
+        <div class="kpi bronze"><div class="l">Faturamento (tráfego)</div><div class="v">R$ 45,6 mil</div><div class="n">60 vendas diretas</div></div>
+        <div class="kpi dark"><div class="l">ROAS direto</div><div class="v">8,22x</div><div class="n">fat ÷ investimento de vendas</div></div>
+        <div class="kpi"><div class="l">Investimento (vendas)</div><div class="v">R$ 5.544</div><div class="n">CAC R$ 92,40</div></div>
+        <div class="kpi"><div class="l">Ticket médio</div><div class="v">R$ 760</div><div class="n">faixas R$497–697 + parcelado</div></div>
+      </div>
+      <div style="display:flex;gap:50px;align-items:center">
+        <div class="fn" style="flex:1">
+          <div class="fns"><div class="fnb" style="width:100%">Visitas no site</div><div class="fnm"><b>1.471</b></div></div>
+          <div class="fns"><div class="fnb" style="width:30%">Checkout</div><div class="fnm"><b>107</b> · 7,27% da visita</div></div>
+          <div class="fns"><div class="fnb" style="width:18%;background:linear-gradient(90deg,var(--green),#4cae62)">Vendas</div><div class="fnm"><b>60</b> · 56% do checkout</div></div>
+        </div>
+        <div class="ins" style="flex:0 0 360px;margin:0">⚠️ <b>Gargalo está antes do checkout:</b> só 7,3% das visitas chegam ao checkout — mas quem chega, fecha (56%). O ponto de melhoria é a <b>página de vendas / oferta</b>, não o checkout.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 melhores anúncios de venda -->
+  <section class="slide">
+    <h2 class="title">Melhores anúncios de <span class="ac">venda</span></h2>
+    <div class="subt">Vídeos lideram em volume; "Desconto Geral" foi o de melhor eficiência (CPA).</div>
+    <div class="grow">
+      <div class="kgrid g4">
+        <div class="creo"><div class="h"><span>AD07 · "Viajar o Mundo" 🎬</span><span class="rk">1</span></div><div class="b">
+          <div class="row"><span>Vendas</span><b>19</b></div><div class="row"><span>CPA</span><b>R$ 57,58</b></div><div class="row"><span>Faturamento</span><b>R$ 11.180</b></div>
+          <a href="https://www.instagram.com/p/DY-htv2AEWj/" target="_blank">Visualizar criativo</a></div></div>
+        <div class="creo"><div class="h"><span>AD05 · "Em 1 min" 🎬</span><span class="rk">2</span></div><div class="b">
+          <div class="row"><span>Vendas</span><b>11</b></div><div class="row"><span>CPA</span><b>R$ 64,04</b></div><div class="row"><span>Faturamento</span><b>R$ 8.733</b></div>
+          <a href="https://www.instagram.com/p/DY-htt8AL2O/" target="_blank">Visualizar criativo</a></div></div>
+        <div class="creo"><div class="h"><span>AD04 · "Desconto Geral"</span><span class="rk">3</span></div><div class="b">
+          <div class="row"><span>Vendas</span><b>9</b></div><div class="row"><span>CPA</span><b style="color:var(--green)">R$ 35,04</b></div><div class="row"><span>Faturamento</span><b>R$ 6.664</b></div>
+          <a href="https://www.instagram.com/p/DY-htX2ABzE/" target="_blank">Visualizar criativo</a></div></div>
+        <div class="creo"><div class="h"><span>AD21 · "Último Dia"</span><span class="rk">4</span></div><div class="b">
+          <div class="row"><span>Vendas</span><b>4</b></div><div class="row"><span>CPA</span><b style="color:var(--green)">R$ 32,80</b></div><div class="row"><span>Faturamento</span><b>R$ 4.879</b></div>
+          <a href="https://www.instagram.com/p/DZSWyPYADBf/" target="_blank">Visualizar criativo</a></div></div>
+      </div>
+      <div class="ins">🚩 <b>Atenção / aprendizado:</b> o teste "AD01 Single" consumiu <b>R$ 1.507</b> para apenas 1 venda (CPA R$ 1.507). Testes de público/criativo precisam de teto de gasto e corte rápido.</div>
+    </div>
+  </section>
+
+  <!-- 9 vendas por público — A SACADA -->
+  <section class="slide">
+    <h2 class="title">Vendas por público — <span class="ac">onde está o lucro</span></h2>
+    <div class="subt">A grande oportunidade do próximo lançamento está aqui.</div>
+    <div class="grow">
+      <table class="simple">
+        <thead><tr><th>Público</th><th class="r">Vendas</th><th class="r">Investido</th><th class="r">Faturamento</th><th class="r">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td>Remarketing ADVGT_V</td><td class="r">29</td><td class="r">R$ 1.106</td><td class="r">R$ 20.916</td><td class="r pos">18,9x ⭐</td></tr>
+          <tr><td>Remarketing ADVGT</td><td class="r">16</td><td class="r">R$ 882</td><td class="r">R$ 11.240</td><td class="r pos">12,7x</td></tr>
+          <tr><td>Seguidores (mais frio)</td><td class="r">15</td><td class="r">R$ 3.556</td><td class="r">R$ 13.434</td><td class="r neg">3,8x</td></tr>
+        </tbody>
+      </table>
+      <div class="ins">💰 <b>A sacada:</b> o público "Seguidores" consumiu <b>64% da verba de vendas (R$ 3.556)</b> com ROAS de 3,8x, enquanto o remarketing entregou <b>13–19x</b> gastando muito menos. <b>Recomendação:</b> no próximo lançamento, realocar verba de venda para remarketing e investir na captação para <b>engordar esse público quente</b> — é o que multiplica o faturamento.</div>
+    </div>
+  </section>
+
+  <!-- 10 vendas por dia -->
+  <section class="slide">
+    <h2 class="title">Vendas por <span class="ac">dia</span></h2>
+    <div class="subt">Concentração na abertura — e um pico de reativação no dia 07/06 que merece atenção.</div>
+    <div class="grow">
+      <div class="barline"><div class="lbl">01/06 · abertura</div><div class="track"><div class="fill" style="width:100%;background:var(--bronze)">16 vendas</div></div><div class="val">23 checkouts</div></div>
+      <div class="barline"><div class="lbl">02/06 · R$597</div><div class="track"><div class="fill" style="width:87%;background:var(--bronze)">14</div></div><div class="val">22</div></div>
+      <div class="barline"><div class="lbl">03/06</div><div class="track"><div class="fill" style="width:12%;background:#6b6257">2</div></div><div class="val">6</div></div>
+      <div class="barline"><div class="lbl">04/06</div><div class="track"><div class="fill" style="width:56%;background:var(--bronze)">9</div></div><div class="val">15</div></div>
+      <div class="barline"><div class="lbl">05/06 · último dia</div><div class="track"><div class="fill" style="width:3%;background:#6b6257">0</div></div><div class="val">8 checkouts</div></div>
+      <div class="barline"><div class="lbl">07/06 · reativação</div><div class="track"><div class="fill" style="width:75%;background:var(--greenSRI)">12</div></div><div class="val">22</div></div>
+      <div class="ins">📈 <b>Aprendizado:</b> ~50% das vendas saíram nos 2 primeiros dias (clássico). O <b>pico de 12 vendas no 07/06</b> (pós-fechamento oficial) mostra que gatilhos de reativação/urgência geram venda — vale planejar mais ações no meio e no fim do carrinho.</div>
+    </div>
+  </section>
+
+  <!-- 11 consolidado -->
+  <section class="slide">
+    <h2 class="title">Consolidado do <span class="ac">tráfego</span></h2>
+    <div class="subt">Investimento total de mídia paga e retorno atribuído ao tráfego.</div>
+    <div class="grow">
+      <div class="kgrid g3" style="margin-bottom:24px">
+        <div class="kpi"><div class="l">Investimento total tráfego</div><div class="v">R$ 7.872</div><div class="n">captação R$2.329 + vendas R$5.544</div></div>
+        <div class="kpi bronze"><div class="l">Faturamento atribuído</div><div class="v">R$ 45.590</div><div class="n">60 vendas diretas</div></div>
+        <div class="kpi dark"><div class="l">ROAS geral do tráfego</div><div class="v">5,79x</div><div class="n">faturamento ÷ investimento total</div></div>
+      </div>
+      <div class="ins">ℹ️ <b>Nota de honestidade:</b> esse ROAS considera só o faturamento <b>diretamente atribuído</b> ao tráfego. O tráfego também alimenta o orgânico, a base de remarketing e as vendas do time comercial — ou seja, o impacto real é maior do que esses 5,79x diretos. Mas reportamos o número conservador e rastreável.</div>
+    </div>
+  </section>
+
+  <!-- 12 comparativo -->
+  <section class="slide">
+    <h2 class="title">Comparativo com o <span class="ac">lançamento anterior</span></h2>
+    <div class="subt">Lançamento de março/2026 vs. este (maio–junho). Salto expressivo na contribuição do tráfego.</div>
+    <div class="grow">
+      <table class="simple">
+        <thead><tr><th>Indicador (tráfego)</th><th class="r">Lançamento anterior</th><th class="r">Este lançamento</th><th class="r">Variação</th></tr></thead>
+        <tbody>
+          <tr><td>Leads totais</td><td class="r">1.674</td><td class="r">3.364</td><td class="r pos">+101%</td></tr>
+          <tr><td>Vendas diretas pelo tráfego</td><td class="r">13</td><td class="r">60</td><td class="r pos">+362%</td></tr>
+          <tr><td>Faturamento direto do tráfego</td><td class="r">R$ 7.161</td><td class="r">R$ 45.590</td><td class="r pos">+537%</td></tr>
+          <tr><td>Investimento em tráfego</td><td class="r">R$ 2.651</td><td class="r">R$ 7.872</td><td class="r">+197%</td></tr>
+          <tr><td>CPL geral</td><td class="r">R$ 1,57</td><td class="r">R$ 1,72</td><td class="r">+10%</td></tr>
+        </tbody>
+      </table>
+      <div class="ins">📊 <b>Leitura:</b> escalamos o investimento ~3x e o faturamento direto cresceu ~6x — ou seja, a verba extra foi <b>mais eficiente</b>, não só maior. O CPL subiu só 10% mesmo com mais volume e mais público frio: ótimo sinal de saúde da conta.</div>
+    </div>
+  </section>
+
+  <!-- 13 aprendizados -->
+  <section class="slide">
+    <h2 class="title">Aprendizados & <span class="ac">recomendações</span></h2>
+    <div class="subt">O que repetir e o que ajustar no próximo lançamento.</div>
+    <div class="grow">
+      <div class="recs">
+        <div class="rec"><div class="num">1</div><div class="tx"><b>Realocar verba de vendas para remarketing.</b> ROAS de 13–19x no remarketing vs. 3,8x no público "Seguidores", que comeu 64% da verba. Maior alavanca de faturamento do próximo lançamento.</div></div>
+        <div class="rec"><div class="num">2</div><div class="tx"><b>Aquecer mais a base na captação.</b> Quanto maior o público de remarketing, maior a venda lá na frente. Escalar o orgânico + ebook (que já dobraram a meta) alimenta diretamente o que mais converte.</div></div>
+        <div class="rec"><div class="num">3</div><div class="tx"><b>Priorizar vídeo na fase de vendas.</b> Os 2 criativos que mais venderam são vídeos (AD07 e AD05). Produzir mais variações de vídeo de venda.</div></div>
+        <div class="rec"><div class="num">4</div><div class="tx"><b>Atacar a página de vendas.</b> Só 7,3% das visitas chegam ao checkout (mas 56% do checkout fecha). Testar headline, prova social e estrutura da oferta para destravar o topo do funil de vendas.</div></div>
+        <div class="rec"><div class="num">5</div><div class="tx"><b>Planejar gatilhos de reativação.</b> O pico de 12 vendas no 07/06 prova que urgência/reativação funciona. Programar mais ações no meio e no fim do carrinho.</div></div>
+        <div class="rec"><div class="num">6</div><div class="tx"><b>Disciplina em testes.</b> Escalar o campeão de ebook (AD01 "Segunda", CPL R$0,99) e cortar rápido testes que queimam verba (AD01 Single: R$1.507 por 1 venda).</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 fim -->
+  <section class="slide cover">
+    <div class="logo">Cardô Marketing</div>
+    <h1>Resultado: tráfego <span class="ac">3x maior</span><br>e <span class="ac">6x mais faturamento</span> direto</h1>
+    <div class="sub">Captação 100% no alvo · ROAS direto de vendas 8,22x · clara rota de otimização para o próximo lançamento</div>
+    <div class="meta">Dúvidas e plano do próximo lançamento → Cardô · agencia@cardomarketing.com.br</div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev">‹</button>
+  <div class="counter" id="counter">1 / 14</div>
+  <button id="next">›</button>
+</div>
+<div class="hint">← → para navegar</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.getElementById('dots');
+  let i=0;
+  slides.forEach((_,k)=>{const d=document.createElement('div');d.className='dot'+(k===0?' on':'');d.onclick=()=>go(k);dotsWrap.appendChild(d);});
+  const dots=[...document.querySelectorAll('.dot')];
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+  }
+  document.getElementById('next').onclick=()=>go(i+1);
+  document.getElementById('prev').onclick=()=>go(i-1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' ')go(i+1);
+    if(e.key==='ArrowLeft')go(i-1);
+    if(e.key==='Home')go(0); if(e.key==='End')go(slides.length-1);
+  });
+</script>
+</body>
+</html>
