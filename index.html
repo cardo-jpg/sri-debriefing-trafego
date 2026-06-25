@@ -58,17 +58,25 @@
   .tli .dot2{width:18px;height:18px;border-radius:50%;background:var(--bronze);margin:38px auto 14px;border:4px solid var(--bg)}
   .tli .dt{font-size:18px;font-weight:800;color:var(--bronze2)}.tli .lb{font-size:13px;margin-top:4px}.tli .sm{font-size:11px;color:var(--muted);margin-top:3px}
 
-  .creo{background:var(--card);color:var(--cardtxt);border-radius:13px;overflow:hidden;display:flex;box-shadow:0 5px 18px #0005}
-  .creo .thumb{flex:0 0 auto;background:#15171c;object-fit:cover;object-position:center}
-  .creo .info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:13px 16px}
-  .creo .info .top{display:flex;align-items:flex-start;gap:9px}
-  .creo .info .rk{background:var(--bronze);color:#241b10;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex:0 0 auto}
-  .creo .info .nm{font-weight:700;font-size:14px;line-height:1.22}
-  .creo .info .star{font-size:11px;color:#9a6a35;font-weight:700;margin-top:6px}
-  .creo .info .stats{display:flex;gap:24px}
-  .creo .info .stat .k{font-size:10px;color:#7a756c;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-  .creo .info .stat .v{font-size:19px;font-weight:800;line-height:1}
-  .creo .info a{font-size:11.5px;color:var(--blue);text-decoration:none;margin-top:10px;display:inline-block}
+  .creo{background:var(--card);color:var(--cardtxt);border-radius:13px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 5px 18px #0005}
+  .creo .ph{position:relative;width:100%;flex:0 0 auto;background:#15171c;overflow:hidden}
+  .creo .ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+  .creo .ph.vid{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2f4a38,#1b2a21)}
+  .creo .ph.vid .vico{font-size:34px;color:#d9b48a;opacity:.9}
+  .creo .ph .rk{position:absolute;top:9px;left:9px;background:var(--bronze);color:#241b10;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;box-shadow:0 2px 6px #0007}
+  .creo .bd{padding:12px 15px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .creo .bd .nm{font-weight:700;font-size:13.5px;line-height:1.2}
+  .creo .bd .star{font-size:10.5px;color:#9a6a35;font-weight:700}
+  .creo .bd .stats{display:flex;gap:24px;margin-top:auto;padding-top:6px}
+  .creo .bd .stat .k{font-size:9.5px;color:#7a756c;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+  .creo .bd .stat .v{font-size:19px;font-weight:800;line-height:1}
+  .creo .bd a{font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px}
+  .vchart{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;height:300px;padding:8px 16px 0}
+  .vcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+  .vcol .vnum{font-size:16px;font-weight:800;margin-bottom:7px}
+  .vcol .vbar{width:100%;max-width:78px;border-radius:8px 8px 0 0;background:var(--bronze)}
+  .vcol .vlbl{font-size:12px;margin-top:10px;font-weight:700;text-align:center}
+  .vcol .vsub{font-size:10px;color:#8b8578;margin-top:2px;text-align:center}
 
   .fn{display:flex;flex-direction:column;gap:7px;max-width:600px}
   .fns{display:flex;align-items:center;gap:14px}
@@ -201,18 +209,18 @@
   <section class="slide">
     <h2 class="title">Melhores criativos de <span class="ac">captação</span></h2>
     <div class="subt">Dados da plataforma (Meta). Um único criativo de ebook carregou quase toda a captação.</div>
-    <div class="grow" style="justify-content:center;gap:10px">
+    <div class="grow" style="justify-content:center;gap:12px">
       <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px">📘 ISCA / EBOOK</div>
       <div class="kgrid g3">
-        <div class="creo"><img class="thumb" src="img/eb_ad01.jpg" style="width:150px;height:150px"><div class="info"><div><div class="top"><span class="rk">1</span><span class="nm">AD01 "Segunda"</span></div><div class="star">⭐ 72% dos leads do ebook</div></div><div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">539</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 0,99</div></div></div><a href="https://www.instagram.com/p/DXzx0HRAFh6/" target="_blank">ver criativo ↗</a></div></div></div>
-        <div class="creo"><img class="thumb" src="img/eb_ad04.jpg" style="width:150px;height:150px"><div class="info"><div><div class="top"><span class="rk">2</span><span class="nm">AD04 "Pilates"</span></div></div><div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">87</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,45</div></div></div><a href="https://www.instagram.com/p/DYDvYnIAEbE/" target="_blank">ver criativo ↗</a></div></div></div>
-        <div class="creo"><img class="thumb" src="img/eb_ad05.jpg" style="width:150px;height:150px"><div class="info"><div><div class="top"><span class="rk">3</span><span class="nm">AD05 "Minha Mãe"</span></div></div><div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">79</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,30</div></div></div><a href="https://www.instagram.com/p/DYDvYoIAC-8/" target="_blank">ver criativo ↗</a></div></div></div>
+        <div class="creo"><div class="ph" style="height:158px"><span class="rk">1</span><img src="img/eb_ad01.jpg"></div><div class="bd"><div class="nm">AD01 "Segunda"</div><div class="star">⭐ 72% dos leads do ebook</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">539</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 0,99</div></div></div><a href="https://www.instagram.com/p/DXzx0HRAFh6/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="creo"><div class="ph" style="height:158px"><span class="rk">2</span><img src="img/eb_ad04.jpg"></div><div class="bd"><div class="nm">AD04 "Pilates"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">87</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,45</div></div></div><a href="https://www.instagram.com/p/DYDvYnIAEbE/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="creo"><div class="ph" style="height:158px"><span class="rk">3</span><img src="img/eb_ad05.jpg"></div><div class="bd"><div class="nm">AD05 "Minha Mãe"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">79</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,30</div></div></div><a href="https://www.instagram.com/p/DYDvYoIAC-8/" target="_blank">ver criativo ↗</a></div></div>
       </div>
-      <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px;margin-top:6px">🎯 CAPTAÇÃO DIRETA</div>
+      <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px;margin-top:4px">🎯 CAPTAÇÃO DIRETA</div>
       <div class="kgrid g3">
-        <div class="creo"><img class="thumb" src="img/cap_ad01.jpg" style="width:150px;height:150px"><div class="info"><div><div class="top"><span class="rk">1</span><span class="nm">AD01 🎬 "É o que eu faço"</span></div><div class="star">vídeo lidera a captação</div></div><div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">360</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,50</div></div></div><a href="https://www.instagram.com/p/DX7OfhLAAxT/" target="_blank">ver criativo ↗</a></div></div></div>
-        <div class="creo"><img class="thumb" src="img/cap_ad04.jpg" style="width:150px;height:150px"><div class="info"><div><div class="top"><span class="rk">2</span><span class="nm">AD04 🎬 "Uma das piores"</span></div></div><div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">267</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,46</div></div></div><a href="https://www.instagram.com/p/DX7OfxTgEd0/" target="_blank">ver criativo ↗</a></div></div></div>
-        <div class="creo"><img class="thumb" src="img/cap_ad11.jpg" style="width:150px;height:150px"><div class="info"><div><div class="top"><span class="rk">3</span><span class="nm">AD11 "Você quer viajar"</span></div></div><div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">135</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,77</div></div></div><a href="https://www.instagram.com/p/DYfhMKvAKOt/" target="_blank">ver criativo ↗</a></div></div></div>
+        <div class="creo"><div class="ph vid" style="height:158px"><span class="rk">1</span><span class="vico">🎬</span></div><div class="bd"><div class="nm">AD01 "É o que eu faço" · vídeo</div><div class="star">vídeo lidera a captação</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">360</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,50</div></div></div><a href="https://www.instagram.com/p/DX7OfhLAAxT/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="creo"><div class="ph vid" style="height:158px"><span class="rk">2</span><span class="vico">🎬</span></div><div class="bd"><div class="nm">AD04 "Uma das piores" · vídeo</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">267</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,46</div></div></div><a href="https://www.instagram.com/p/DX7OfxTgEd0/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="creo"><div class="ph" style="height:158px"><span class="rk">3</span><img src="img/cap_ad11.jpg"></div><div class="bd"><div class="nm">AD11 "Você quer viajar"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">135</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,77</div></div></div><a href="https://www.instagram.com/p/DYfhMKvAKOt/" target="_blank">ver criativo ↗</a></div></div>
       </div>
     </div>
   </section>
@@ -274,12 +282,12 @@
   <section class="slide">
     <h2 class="title">Melhores anúncios de <span class="ac">venda</span></h2>
     <div class="subt">Vídeos lideram em volume; "Desconto Geral" foi o de melhor eficiência (CPA).</div>
-    <div class="grow" style="justify-content:center;gap:16px">
-      <div class="kgrid g2">
-        <div class="creo"><img class="thumb" src="img/vd_ad07.jpg" style="width:170px;height:170px"><div class="info"><div><div class="top"><span class="rk">1</span><span class="nm">AD07 🎬 "Viajar o Mundo"</span></div></div><div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">19</div></div><div class="stat"><div class="k">CPA</div><div class="v">R$ 57,58</div></div><div class="stat"><div class="k">Faturamento</div><div class="v">R$ 11.143</div></div></div><a href="https://www.instagram.com/p/DY-htv2AEWj/" target="_blank">ver criativo ↗</a></div></div></div>
-        <div class="creo"><img class="thumb" src="img/vd_ad05.jpg" style="width:170px;height:170px"><div class="info"><div><div class="top"><span class="rk">2</span><span class="nm">AD05 🎬 "Em 1 min"</span></div></div><div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">11</div></div><div class="stat"><div class="k">CPA</div><div class="v">R$ 64,04</div></div><div class="stat"><div class="k">Faturamento</div><div class="v">R$ 6.267</div></div></div><a href="https://www.instagram.com/p/DY-htt8AL2O/" target="_blank">ver criativo ↗</a></div></div></div>
-        <div class="creo"><img class="thumb" src="img/vd_ad04.jpg" style="width:170px;height:170px"><div class="info"><div><div class="top"><span class="rk">3</span><span class="nm">AD04 "Desconto Geral"</span></div><div class="star">melhor eficiência (CPA)</div></div><div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">9</div></div><div class="stat"><div class="k">CPA</div><div class="v" style="color:#2e7d46">R$ 35,04</div></div><div class="stat"><div class="k">Faturamento</div><div class="v">R$ 5.173</div></div></div><a href="https://www.instagram.com/p/DY-htX2ABzE/" target="_blank">ver criativo ↗</a></div></div></div>
-        <div class="creo"><img class="thumb" src="img/vd_ad21.jpg" style="width:170px;height:170px"><div class="info"><div><div class="top"><span class="rk">4</span><span class="nm">AD21 "Último Dia"</span></div><div class="star">menor CPA do top</div></div><div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">4</div></div><div class="stat"><div class="k">CPA</div><div class="v" style="color:#2e7d46">R$ 32,80</div></div><div class="stat"><div class="k">Faturamento</div><div class="v">R$ 2.788</div></div></div><a href="https://www.instagram.com/p/DZSWyPYADBf/" target="_blank">ver criativo ↗</a></div></div></div>
+    <div class="grow" style="justify-content:center;gap:18px">
+      <div class="kgrid g4">
+        <div class="creo"><div class="ph" style="height:170px"><span class="rk">1</span><img src="img/vd_ad07.jpg"></div><div class="bd"><div class="nm">AD07 🎬 "Viajar o Mundo"</div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">19</div></div><div class="stat"><div class="k">CPA</div><div class="v">R$ 57,58</div></div></div><a href="https://www.instagram.com/p/DY-htv2AEWj/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="creo"><div class="ph" style="height:170px"><span class="rk">2</span><img src="img/vd_ad05.jpg"></div><div class="bd"><div class="nm">AD05 🎬 "Em 1 min"</div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">11</div></div><div class="stat"><div class="k">CPA</div><div class="v">R$ 64,04</div></div></div><a href="https://www.instagram.com/p/DY-htt8AL2O/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="creo"><div class="ph" style="height:170px"><span class="rk">3</span><img src="img/vd_ad04.jpg"></div><div class="bd"><div class="nm">AD04 "Desconto Geral"</div><div class="star">melhor eficiência (CPA)</div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">9</div></div><div class="stat"><div class="k">CPA</div><div class="v" style="color:#2e7d46">R$ 35,04</div></div></div><a href="https://www.instagram.com/p/DY-htX2ABzE/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="creo"><div class="ph" style="height:170px"><span class="rk">4</span><img src="img/vd_ad21.jpg"></div><div class="bd"><div class="nm">AD21 "Último Dia"</div><div class="star">menor CPA do top</div><div class="stats"><div class="stat"><div class="k">Vendas</div><div class="v">4</div></div><div class="stat"><div class="k">CPA</div><div class="v" style="color:#2e7d46">R$ 32,80</div></div></div><a href="https://www.instagram.com/p/DZSWyPYADBf/" target="_blank">ver criativo ↗</a></div></div>
       </div>
       <div class="ins">🚩 <b>Aprendizado:</b> o teste "AD01 Single" consumiu <b>R$ 1.507</b> para apenas 1 venda. Testes precisam de teto de gasto e corte rápido.</div>
     </div>
@@ -307,14 +315,16 @@
     <h2 class="title">Vendas por <span class="ac">dia</span></h2>
     <div class="subt">Concentração na abertura — e um pico de reativação no dia 07/06 que merece atenção.</div>
     <div class="grow">
-      <div class="barline"><div class="lbl">01/06 · abertura R$497</div><div class="track"><div class="fill" style="width:100%;background:var(--bronze)">16 vendas</div></div><div class="val">23 checkouts</div></div>
-      <div class="barline"><div class="lbl">02/06 · R$597</div><div class="track"><div class="fill" style="width:88%;background:var(--bronze)">14</div></div><div class="val">22</div></div>
-      <div class="barline"><div class="lbl">03/06</div><div class="track"><div class="fill" style="width:12.5%;background:#6b6257">2</div></div><div class="val">6</div></div>
-      <div class="barline"><div class="lbl">04/06</div><div class="track"><div class="fill" style="width:56%;background:var(--bronze)">9</div></div><div class="val">15</div></div>
-      <div class="barline"><div class="lbl">05/06 · último dia R$697</div><div class="track"><div class="fill" style="width:2%;background:#6b6257"></div></div><div class="val">0 · 8 checkouts</div></div>
-      <div class="barline"><div class="lbl">06/06</div><div class="track"><div class="fill" style="width:19%;background:#6b6257">3</div></div><div class="val">5</div></div>
-      <div class="barline"><div class="lbl">07/06 · reativação</div><div class="track"><div class="fill" style="width:75%;background:var(--greenSRI)">12</div></div><div class="val">22</div></div>
-      <div class="barline"><div class="lbl">08/06+ · residual</div><div class="track"><div class="fill" style="width:25%;background:#6b6257">4</div></div><div class="val">08–15/06</div></div>
+      <div class="vchart">
+        <div class="vcol"><div class="vnum">16</div><div class="vbar" style="height:232px"></div><div class="vlbl">01/06</div><div class="vsub">abertura · R$497</div></div>
+        <div class="vcol"><div class="vnum">14</div><div class="vbar" style="height:203px"></div><div class="vlbl">02/06</div><div class="vsub">R$597</div></div>
+        <div class="vcol"><div class="vnum">2</div><div class="vbar" style="height:29px;background:#6b6257"></div><div class="vlbl">03/06</div><div class="vsub">&nbsp;</div></div>
+        <div class="vcol"><div class="vnum">9</div><div class="vbar" style="height:131px"></div><div class="vlbl">04/06</div><div class="vsub">&nbsp;</div></div>
+        <div class="vcol"><div class="vnum">0</div><div class="vbar" style="height:5px;background:#6b6257"></div><div class="vlbl">05/06</div><div class="vsub">últ. dia · R$697</div></div>
+        <div class="vcol"><div class="vnum">3</div><div class="vbar" style="height:44px;background:#6b6257"></div><div class="vlbl">06/06</div><div class="vsub">&nbsp;</div></div>
+        <div class="vcol"><div class="vnum">12</div><div class="vbar" style="height:174px;background:var(--greenSRI)"></div><div class="vlbl">07/06</div><div class="vsub" style="color:#6bbf86;font-weight:700">reativação</div></div>
+        <div class="vcol"><div class="vnum">4</div><div class="vbar" style="height:58px;background:#6b6257"></div><div class="vlbl">08/06+</div><div class="vsub">residual</div></div>
+      </div>
       <div class="ins">📈 <b>Aprendizado:</b> ~50% das vendas saíram nos 2 primeiros dias. O <b>pico de 12 vendas no 07/06</b> (pós-fechamento oficial) mostra que gatilhos de reativação geram venda — vale planejar mais ações no meio e no fim do carrinho.</div>
     </div>
   </section>
