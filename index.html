@@ -79,6 +79,20 @@
   .vaxcell{flex:1;max-width:112px;text-align:center}
   .vaxcell .vlbl{font-size:12.5px;font-weight:700}
   .vaxcell .vsub{font-size:10.5px;color:#8b8578;margin-top:2px}
+  .pcell{display:flex;gap:15px;align-items:center}
+  .phone{flex:0 0 110px;width:110px;aspect-ratio:9/16;border:4px solid #0c0c0c;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 8px 22px #0008;position:relative}
+  .phone::before{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:34px;height:4px;background:#0c0c0c;border-radius:3px;z-index:2}
+  .phone img{width:100%;height:100%;object-fit:cover;display:block}
+  .phone.vid{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2f4a38,#1b2a21)}
+  .phone.vid .vico{font-size:30px;color:#d9b48a;opacity:.9}
+  .phone .rk{position:absolute;top:8px;right:8px;background:var(--bronze);color:#241b10;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;z-index:3;box-shadow:0 2px 5px #0008}
+  .pinfo{flex:1;min-width:0}
+  .pinfo .nm{font-weight:700;font-size:13.5px;line-height:1.2;margin-bottom:5px}
+  .pinfo .star{font-size:10.5px;color:var(--bronze2);font-weight:700;margin-bottom:9px}
+  .pinfo .stats{display:flex;gap:22px;margin-bottom:9px}
+  .pinfo .stat .k{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+  .pinfo .stat .v{font-size:18px;font-weight:800;line-height:1}
+  .pinfo a{font-size:11px;color:var(--blue);text-decoration:none}
 
   .fn{display:flex;flex-direction:column;gap:7px;max-width:600px}
   .fns{display:flex;align-items:center;gap:14px}
@@ -211,18 +225,18 @@
   <section class="slide">
     <h2 class="title">Melhores criativos de <span class="ac">captação</span></h2>
     <div class="subt">Dados da plataforma (Meta). Um único criativo de ebook carregou quase toda a captação.</div>
-    <div class="grow" style="justify-content:center;gap:12px">
+    <div class="grow" style="justify-content:center;gap:14px">
       <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px">📘 ISCA / EBOOK</div>
       <div class="kgrid g3">
-        <div class="creo"><div class="ph" style="height:158px"><span class="rk">1</span><img src="img/eb_ad01.jpg"></div><div class="bd"><div class="nm">AD01 "Segunda"</div><div class="star">⭐ 72% dos leads do ebook</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">539</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 0,99</div></div></div><a href="https://www.instagram.com/p/DXzx0HRAFh6/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="creo"><div class="ph" style="height:158px"><span class="rk">2</span><img src="img/eb_ad04.jpg"></div><div class="bd"><div class="nm">AD04 "Pilates"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">87</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,45</div></div></div><a href="https://www.instagram.com/p/DYDvYnIAEbE/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="creo"><div class="ph" style="height:158px"><span class="rk">3</span><img src="img/eb_ad05.jpg"></div><div class="bd"><div class="nm">AD05 "Minha Mãe"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">79</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,30</div></div></div><a href="https://www.instagram.com/p/DYDvYoIAC-8/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="pcell"><div class="phone"><span class="rk">1</span><img src="img/eb_ad01.jpg"></div><div class="pinfo"><div class="nm">AD01 "Segunda"</div><div class="star">⭐ 72% dos leads do ebook</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">539</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 0,99</div></div></div><a href="https://www.instagram.com/p/DXzx0HRAFh6/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="pcell"><div class="phone"><span class="rk">2</span><img src="img/eb_ad04.jpg"></div><div class="pinfo"><div class="nm">AD04 "Pilates"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">87</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,45</div></div></div><a href="https://www.instagram.com/p/DYDvYnIAEbE/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="pcell"><div class="phone"><span class="rk">3</span><img src="img/eb_ad05.jpg"></div><div class="pinfo"><div class="nm">AD05 "Minha Mãe"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">79</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,30</div></div></div><a href="https://www.instagram.com/p/DYDvYoIAC-8/" target="_blank">ver criativo ↗</a></div></div>
       </div>
-      <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px;margin-top:4px">🎯 CAPTAÇÃO DIRETA</div>
+      <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px;margin-top:6px">🎯 CAPTAÇÃO DIRETA</div>
       <div class="kgrid g3">
-        <div class="creo"><div class="ph vid" style="height:158px"><span class="rk">1</span><span class="vico">🎬</span></div><div class="bd"><div class="nm">AD01 "É o que eu faço" · vídeo</div><div class="star">vídeo lidera a captação</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">360</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,50</div></div></div><a href="https://www.instagram.com/p/DX7OfhLAAxT/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="creo"><div class="ph vid" style="height:158px"><span class="rk">2</span><span class="vico">🎬</span></div><div class="bd"><div class="nm">AD04 "Uma das piores" · vídeo</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">267</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,46</div></div></div><a href="https://www.instagram.com/p/DX7OfxTgEd0/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="creo"><div class="ph" style="height:158px"><span class="rk">3</span><img src="img/cap_ad11.jpg"></div><div class="bd"><div class="nm">AD11 "Você quer viajar"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">135</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,77</div></div></div><a href="https://www.instagram.com/p/DYfhMKvAKOt/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="pcell"><div class="phone vid"><span class="rk">1</span><span class="vico">🎬</span></div><div class="pinfo"><div class="nm">AD01 "É o que eu faço" · vídeo</div><div class="star">vídeo lidera a captação</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">360</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,50</div></div></div><a href="https://www.instagram.com/p/DX7OfhLAAxT/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="pcell"><div class="phone vid"><span class="rk">2</span><span class="vico">🎬</span></div><div class="pinfo"><div class="nm">AD04 "Uma das piores" · vídeo</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">267</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,46</div></div></div><a href="https://www.instagram.com/p/DX7OfxTgEd0/" target="_blank">ver criativo ↗</a></div></div>
+        <div class="pcell"><div class="phone"><span class="rk">3</span><img src="img/cap_ad11.jpg"></div><div class="pinfo"><div class="nm">AD11 "Você quer viajar"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">135</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,77</div></div></div><a href="https://www.instagram.com/p/DYfhMKvAKOt/" target="_blank">ver criativo ↗</a></div></div>
       </div>
     </div>
   </section>
