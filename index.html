@@ -93,6 +93,23 @@
   .pinfo .stat .k{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
   .pinfo .stat .v{font-size:18px;font-weight:800;line-height:1}
   .pinfo a{font-size:11px;color:var(--blue);text-decoration:none}
+  .podwrap{position:relative;display:flex;justify-content:center;width:100%}
+  .podwrap::before{content:'';position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:62%;height:96%;background:radial-gradient(ellipse at top,rgba(194,152,106,.22),transparent 70%);z-index:0;pointer-events:none}
+  .podium{display:flex;align-items:flex-end;justify-content:center;gap:38px;position:relative;z-index:1}
+  .pod{display:flex;flex-direction:column;align-items:center}
+  .pod .pimg{border-radius:16px;overflow:hidden;border:4px solid #0c0c0c;box-shadow:0 14px 36px #000a;background:#15171c}
+  .pod .pimg img{width:100%;height:100%;object-fit:cover;display:block}
+  .pod .pimg.vid{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2f4a38,#1b2a21)}
+  .pod .pimg.vid .vico{font-size:40px;color:#d9b48a;opacity:.9}
+  .pod .pname{font-weight:700;font-size:14.5px;margin-top:13px;text-align:center;max-width:200px}
+  .pod .pstar{font-size:11px;color:var(--bronze2);font-weight:700;margin-top:4px}
+  .pod .pstat{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
+  .pod .pstat b{color:var(--txt);font-size:17px;font-weight:800}
+  .pod .pa{font-size:11px;color:var(--blue);text-decoration:none;margin-top:6px;display:inline-block}
+  .pod .step{margin-top:15px;border-radius:9px 9px 0 0;display:flex;align-items:flex-start;justify-content:center;font-weight:800;font-size:44px;padding-top:12px;box-shadow:inset 0 3px 10px #ffffff55,0 8px 20px #0007;color:#2a2418}
+  .step.s1{background:linear-gradient(180deg,#f1da8d,#c9a24d)}
+  .step.s2{background:linear-gradient(180deg,#e7e8ed,#b6bcc6)}
+  .step.s3{background:linear-gradient(180deg,#e3b78d,#b07f4f)}
 
   .fn{display:flex;flex-direction:column;gap:7px;max-width:600px}
   .fns{display:flex;align-items:center;gap:14px}
@@ -221,23 +238,67 @@
     </div>
   </section>
 
-  <!-- 6 melhores criativos captação -->
+  <!-- 6a pódio criativos EBOOK -->
   <section class="slide">
-    <h2 class="title">Melhores criativos de <span class="ac">captação</span></h2>
-    <div class="subt">Dados da plataforma (Meta). Um único criativo de ebook carregou quase toda a captação.</div>
-    <div class="grow" style="justify-content:center;gap:14px">
-      <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px">📘 ISCA / EBOOK</div>
-      <div class="kgrid g3">
-        <div class="pcell"><div class="phone"><span class="rk">1</span><img src="img/eb_ad01.jpg"></div><div class="pinfo"><div class="nm">AD01 "Segunda"</div><div class="star">⭐ 72% dos leads do ebook</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">539</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 0,99</div></div></div><a href="https://www.instagram.com/p/DXzx0HRAFh6/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="pcell"><div class="phone"><span class="rk">2</span><img src="img/eb_ad04.jpg"></div><div class="pinfo"><div class="nm">AD04 "Pilates"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">87</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,45</div></div></div><a href="https://www.instagram.com/p/DYDvYnIAEbE/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="pcell"><div class="phone"><span class="rk">3</span><img src="img/eb_ad05.jpg"></div><div class="pinfo"><div class="nm">AD05 "Minha Mãe"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">79</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,30</div></div></div><a href="https://www.instagram.com/p/DYDvYoIAC-8/" target="_blank">ver criativo ↗</a></div></div>
-      </div>
-      <div style="font-size:12.5px;color:var(--bronze2);font-weight:800;letter-spacing:.8px;margin-top:6px">🎯 CAPTAÇÃO DIRETA</div>
-      <div class="kgrid g3">
-        <div class="pcell"><div class="phone vid"><span class="rk">1</span><span class="vico">🎬</span></div><div class="pinfo"><div class="nm">AD01 "É o que eu faço" · vídeo</div><div class="star">vídeo lidera a captação</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">360</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,50</div></div></div><a href="https://www.instagram.com/p/DX7OfhLAAxT/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="pcell"><div class="phone vid"><span class="rk">2</span><span class="vico">🎬</span></div><div class="pinfo"><div class="nm">AD04 "Uma das piores" · vídeo</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">267</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,46</div></div></div><a href="https://www.instagram.com/p/DX7OfxTgEd0/" target="_blank">ver criativo ↗</a></div></div>
-        <div class="pcell"><div class="phone"><span class="rk">3</span><img src="img/cap_ad11.jpg"></div><div class="pinfo"><div class="nm">AD11 "Você quer viajar"</div><div class="stats"><div class="stat"><div class="k">Leads</div><div class="v">135</div></div><div class="stat"><div class="k">CPL</div><div class="v">R$ 1,77</div></div></div><a href="https://www.instagram.com/p/DYfhMKvAKOt/" target="_blank">ver criativo ↗</a></div></div>
-      </div>
+    <h2 class="title">Pódio dos criativos — <span class="ac">isca / ebook</span></h2>
+    <div class="subt">Um único criativo ("Segunda") carregou 72% da captação do ebook.</div>
+    <div class="grow">
+      <div class="podwrap"><div class="podium">
+        <div class="pod">
+          <div class="pimg" style="width:165px;height:165px"><img src="img/eb_ad04.jpg"></div>
+          <div class="pname">AD04 "Pilates"</div>
+          <div class="pstat"><b>87</b> leads · CPL R$ 1,45</div>
+          <a class="pa" href="https://www.instagram.com/p/DYDvYnIAEbE/" target="_blank">ver criativo ↗</a>
+          <div class="step s2" style="width:155px;height:104px">2</div>
+        </div>
+        <div class="pod">
+          <div class="pimg" style="width:205px;height:205px"><img src="img/eb_ad01.jpg"></div>
+          <div class="pname">AD01 "Segunda"</div>
+          <div class="pstar">⭐ 72% dos leads do ebook</div>
+          <div class="pstat"><b>539</b> leads · CPL R$ 0,99</div>
+          <a class="pa" href="https://www.instagram.com/p/DXzx0HRAFh6/" target="_blank">ver criativo ↗</a>
+          <div class="step s1" style="width:185px;height:148px">1</div>
+        </div>
+        <div class="pod">
+          <div class="pimg" style="width:165px;height:165px"><img src="img/eb_ad05.jpg"></div>
+          <div class="pname">AD05 "Minha Mãe"</div>
+          <div class="pstat"><b>79</b> leads · CPL R$ 1,30</div>
+          <a class="pa" href="https://www.instagram.com/p/DYDvYoIAC-8/" target="_blank">ver criativo ↗</a>
+          <div class="step s3" style="width:155px;height:78px">3</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 6b pódio criativos CAPTAÇÃO DIRETA -->
+  <section class="slide">
+    <h2 class="title">Pódio dos criativos — <span class="ac">captação direta</span></h2>
+    <div class="subt">Os vídeos lideraram a captação direta. (Frames a substituir pelos arquivos reais.)</div>
+    <div class="grow">
+      <div class="podwrap"><div class="podium">
+        <div class="pod">
+          <div class="pimg vid" style="width:165px;height:165px"><span class="vico">🎬</span></div>
+          <div class="pname">AD04 "Uma das piores" · vídeo</div>
+          <div class="pstat"><b>267</b> leads · CPL R$ 1,46</div>
+          <a class="pa" href="https://www.instagram.com/p/DX7OfxTgEd0/" target="_blank">ver criativo ↗</a>
+          <div class="step s2" style="width:155px;height:104px">2</div>
+        </div>
+        <div class="pod">
+          <div class="pimg vid" style="width:205px;height:205px"><span class="vico">🎬</span></div>
+          <div class="pname">AD01 "É o que eu faço" · vídeo</div>
+          <div class="pstar">🎬 vídeo lidera a captação</div>
+          <div class="pstat"><b>360</b> leads · CPL R$ 1,50</div>
+          <a class="pa" href="https://www.instagram.com/p/DX7OfhLAAxT/" target="_blank">ver criativo ↗</a>
+          <div class="step s1" style="width:185px;height:148px">1</div>
+        </div>
+        <div class="pod">
+          <div class="pimg" style="width:165px;height:165px"><img src="img/cap_ad11.jpg"></div>
+          <div class="pname">AD11 "Você quer viajar"</div>
+          <div class="pstat"><b>135</b> leads · CPL R$ 1,77</div>
+          <a class="pa" href="https://www.instagram.com/p/DYfhMKvAKOt/" target="_blank">ver criativo ↗</a>
+          <div class="step s3" style="width:155px;height:78px">3</div>
+        </div>
+      </div></div>
     </div>
   </section>
 
