@@ -71,12 +71,14 @@
   .creo .bd .stat .k{font-size:9.5px;color:#7a756c;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
   .creo .bd .stat .v{font-size:19px;font-weight:800;line-height:1}
   .creo .bd a{font-size:11px;color:var(--blue);text-decoration:none;margin-top:8px}
-  .vchart{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;height:300px;padding:8px 16px 0}
-  .vcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
-  .vcol .vnum{font-size:16px;font-weight:800;margin-bottom:7px}
-  .vcol .vbar{width:100%;max-width:78px;border-radius:8px 8px 0 0;background:var(--bronze)}
-  .vcol .vlbl{font-size:12px;margin-top:10px;font-weight:700;text-align:center}
-  .vcol .vsub{font-size:10px;color:#8b8578;margin-top:2px;text-align:center}
+  .vchart{display:flex;align-items:flex-end;justify-content:space-around;gap:22px;height:380px;padding:0 30px;border-bottom:2px solid #4a4a4a}
+  .vcol{flex:1;max-width:112px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+  .vcol .vnum{font-size:18px;font-weight:800;margin-bottom:8px}
+  .vcol .vbar{width:100%;max-width:90px;border-radius:7px 7px 0 0;background:linear-gradient(180deg,#d9b48a,#b07f4f)}
+  .vaxis{display:flex;justify-content:space-around;gap:22px;padding:11px 30px 0}
+  .vaxcell{flex:1;max-width:112px;text-align:center}
+  .vaxcell .vlbl{font-size:12.5px;font-weight:700}
+  .vaxcell .vsub{font-size:10.5px;color:#8b8578;margin-top:2px}
 
   .fn{display:flex;flex-direction:column;gap:7px;max-width:600px}
   .fns{display:flex;align-items:center;gap:14px}
@@ -316,14 +318,24 @@
     <div class="subt">Concentração na abertura — e um pico de reativação no dia 07/06 que merece atenção.</div>
     <div class="grow">
       <div class="vchart">
-        <div class="vcol"><div class="vnum">16</div><div class="vbar" style="height:232px"></div><div class="vlbl">01/06</div><div class="vsub">abertura · R$497</div></div>
-        <div class="vcol"><div class="vnum">14</div><div class="vbar" style="height:203px"></div><div class="vlbl">02/06</div><div class="vsub">R$597</div></div>
-        <div class="vcol"><div class="vnum">2</div><div class="vbar" style="height:29px;background:#6b6257"></div><div class="vlbl">03/06</div><div class="vsub">&nbsp;</div></div>
-        <div class="vcol"><div class="vnum">9</div><div class="vbar" style="height:131px"></div><div class="vlbl">04/06</div><div class="vsub">&nbsp;</div></div>
-        <div class="vcol"><div class="vnum">0</div><div class="vbar" style="height:5px;background:#6b6257"></div><div class="vlbl">05/06</div><div class="vsub">últ. dia · R$697</div></div>
-        <div class="vcol"><div class="vnum">3</div><div class="vbar" style="height:44px;background:#6b6257"></div><div class="vlbl">06/06</div><div class="vsub">&nbsp;</div></div>
-        <div class="vcol"><div class="vnum">12</div><div class="vbar" style="height:174px;background:var(--greenSRI)"></div><div class="vlbl">07/06</div><div class="vsub" style="color:#6bbf86;font-weight:700">reativação</div></div>
-        <div class="vcol"><div class="vnum">4</div><div class="vbar" style="height:58px;background:#6b6257"></div><div class="vlbl">08/06+</div><div class="vsub">residual</div></div>
+        <div class="vcol"><div class="vnum">16</div><div class="vbar" style="height:330px"></div></div>
+        <div class="vcol"><div class="vnum">14</div><div class="vbar" style="height:289px"></div></div>
+        <div class="vcol"><div class="vnum">2</div><div class="vbar" style="height:41px;background:#6b6257"></div></div>
+        <div class="vcol"><div class="vnum">9</div><div class="vbar" style="height:186px"></div></div>
+        <div class="vcol"><div class="vnum">0</div><div class="vbar" style="height:4px;background:#6b6257"></div></div>
+        <div class="vcol"><div class="vnum">3</div><div class="vbar" style="height:62px;background:#6b6257"></div></div>
+        <div class="vcol"><div class="vnum">12</div><div class="vbar" style="height:248px;background:linear-gradient(180deg,#3f9457,#2e4a37)"></div></div>
+        <div class="vcol"><div class="vnum">4</div><div class="vbar" style="height:83px;background:#6b6257"></div></div>
+      </div>
+      <div class="vaxis">
+        <div class="vaxcell"><div class="vlbl">01/06</div><div class="vsub">abertura · R$497</div></div>
+        <div class="vaxcell"><div class="vlbl">02/06</div><div class="vsub">R$597</div></div>
+        <div class="vaxcell"><div class="vlbl">03/06</div><div class="vsub">&nbsp;</div></div>
+        <div class="vaxcell"><div class="vlbl">04/06</div><div class="vsub">&nbsp;</div></div>
+        <div class="vaxcell"><div class="vlbl">05/06</div><div class="vsub">últ. dia · R$697</div></div>
+        <div class="vaxcell"><div class="vlbl">06/06</div><div class="vsub">&nbsp;</div></div>
+        <div class="vaxcell"><div class="vlbl">07/06</div><div class="vsub" style="color:#6bbf86;font-weight:700">reativação</div></div>
+        <div class="vaxcell"><div class="vlbl">08/06+</div><div class="vsub">residual</div></div>
       </div>
       <div class="ins">📈 <b>Aprendizado:</b> ~50% das vendas saíram nos 2 primeiros dias. O <b>pico de 12 vendas no 07/06</b> (pós-fechamento oficial) mostra que gatilhos de reativação geram venda — vale planejar mais ações no meio e no fim do carrinho.</div>
     </div>
